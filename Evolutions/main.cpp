@@ -203,43 +203,23 @@ int main()
                     break;
             }
 }
-		int c = 0;
-//		while (c < animals.size()){
-//            if (!animals[c].is_alive){
-//                animals.erase(next(animals.begin(), c));
-//                continue;
-//            }
-//            else c++;
-//
-//		}
+		map<long long int, Animal>::iterator c;
+		while (c < animals.size()){
+            if (!c->second.is_alive){
+                animals.erase(c);
+                continue;
+            }
+            else c++;
+
+		}
         for (auto& animal : animals){
             Animal& an = animal.second;
             an.update();
             vector<long long int> circle_segment = findIntersectingCirclesSegments(animals, an.getSegments(), animal.first);
             vector<long long int> circle_circle = findIntersectingCircles(animals, an);
-//            CircleShape cricle;
-//            Circle circ = an.getCircle();
-//            cricle.setRadius(circ.r * 2);
-//            cricle.setOrigin(circ.r * 2.f, circ.r * 2.f);
-//            cricle.setPosition(circ.x, circ.y);
-//            vector<int> r = circ.color;
-//            cricle.setFillColor(Color(r[0], r[1], r[2], 150));
-//            vector<Segment> segs = an.getSegments();
-//            for (int i = 0; i < segs.size(); i++)
-//            {
-//                CircleShape cr;
-//                cr.setRadius(2);
-//                cr.setOrigin(2, 2);
-//                cr.setFillColor(Color(r[0], r[1], r[2], 150));
-//                cr.setPosition(segs[i].x2, segs[i].y2);
-//                window.draw(cr);
-//             }
 
-//            window.draw(cricle);
         }
-//        cout << animals[0].getCircle() << endl;
-//        cout << animals[0].getSegments() << endl << endl;
-//        window.display();
+
 		// timer
        Int32 frame_duration = clock.getElapsedTime().asMilliseconds();
        Int32 time_to_sleep = int(1000.f/FPS) - frame_duration;
