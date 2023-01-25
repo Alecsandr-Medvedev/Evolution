@@ -32,8 +32,8 @@ vector<f> neiron(f growthRate, f maxSpeed, f size, i pointsPhotosynthesis, i poi
             }
         }
         else{
-//        speedx = ((rand() % 200) - 100) / 100.f;
-//        speedy = ((rand() % 200) - 100) / 100.f;
+        speedx = ((rand() % 200) - 100) / 100.f;
+        speedy = ((rand() % 200) - 100) / 100.f;
         }
     }
     else{
@@ -48,7 +48,7 @@ vector<f> neiron(f growthRate, f maxSpeed, f size, i pointsPhotosynthesis, i poi
     }
 //    cout << is_concerns;
     if (is_concerns && pointsPredator){
-            cout << 1112;
+        cout << 1112;
         predatoring = 0;
     }
     else{

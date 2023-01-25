@@ -45,7 +45,7 @@ Animal::Animal(float s, float mS, float gR, int x, int y, int pPh, int pPr, std:
 	id = id_;
 }
 // Обновление животного
-void Animal::update(std::map<long long int, Animal> animals)
+void Animal::update(std::map<long long int, Animal>& animals)
 {
 	energy -= circle.r * circle.r * k1;
 	if (energy < 0){
@@ -62,6 +62,21 @@ void Animal::update(std::map<long long int, Animal> animals)
 
 	circle.x += speedx * maxSpeed;
 	circle.y += speedy * maxSpeed;
+	if (circle_circle.size()){
+        concernsId = circle_circle[0];
+	}
+	else{
+        concernsId = -1;
+	}
+	if (circle_segment.size()){
+        targetId = circle_segment[0];
+        tx = *animals[targetId].getCircle().x;
+        ty = animals[targetId].getCircle().y;
+	}
+	else{
+        targetId = -1;
+	}
+	cout << targetId << " " << id << endl;
 
 }
 

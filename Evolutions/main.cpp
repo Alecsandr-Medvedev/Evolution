@@ -149,16 +149,21 @@ int main()
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "Evolutions");
     vector<long long int> ids;
 
+    vector<long long int> circle_segment;
+    vector<long long int> circle_circle;
+    vector<long long int> dieAnimals;
+
+
     window.setActive(false);
 
     Thread thread(&renderingThread, &window);
     thread.launch();
 
-	for (int i = 0; i < 1; i++){
+	for (int i = 0; i < 2; i++){
         float size = (rand() % 10 + 100) / 10.f;
         int pointsPhotosynthesis = 0;
         int poitsPredator = 100 - pointsPhotosynthesis;
-        float maxSpeed = rand() % 100;
+        float maxSpeed = rand() % 10;
         float growthRate = (rand() % 1) / 100.f;
 //        int posX = (rand() % WIDTH);
 //        int posY = (rand() % HEIGHT);
@@ -176,7 +181,6 @@ int main()
 
 	while (window.isOpen())
 	{
-//        window.clear(Color(0, 0, 0));
 		Event event;
 		while (window.pollEvent(event))
 {
@@ -203,21 +207,17 @@ int main()
                     break;
             }
 }
-		map<long long int, Animal>::iterator c;
-		while (c < animals.size()){
-            if (!c->second.is_alive){
-                animals.erase(c);
-                continue;
-            }
-            else c++;
-
-		}
+		dieAnimals.clear();
         for (auto& animal : animals){
             Animal& an = animal.second;
-            an.update();
+            if (!an.is_alive) dieAnimals.push_back(animal.first);
+            an.update(&animals);
             vector<long long int> circle_segment = findIntersectingCirclesSegments(animals, an.getSegments(), animal.first);
             vector<long long int> circle_circle = findIntersectingCircles(animals, an);
+        }
 
+        for (long long int el : dieAnimals){
+            animals.erase (el);
         }
 
 		// timer

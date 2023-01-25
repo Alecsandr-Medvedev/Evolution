@@ -28,7 +28,8 @@ class Animal {
     }
     std::string genus;
 	float maxSpeed, energy, growthRate, k1 = 0, speedx, speedy, PI, k2 = 10, rad_;
-	int pointsPhotosynthesis, pointsPredator, countBeam = 5, tx = -1, ty = -1, id;
+	long long int pointsPhotosynthesis, pointsPredator, countBeam = 5, id;
+	double tx = -1, ty = -1;
 	long long int targetId = -1, concernsId = -1;
 	bool photosynthesis, predatoring, is_alive = true, is_multiply = false;
 	std::vector<Segment> segments;
@@ -37,7 +38,7 @@ class Animal {
 
 	 Animal(float /*size*/, float /*maxSpeed*/, float /*growthRate*/, int /*posX*/, int /*posY*/, int /*pointsPhotosynthesis*/, int /*poitsPredator*/, std::string /*genus*/, int /*r*/, int /*g*/, int /*b*/, int id_);
 	 void setPhotosynthesisPoint(float);
-	 void update(std::map<long long int, Animal> animals);
+	 void update(std::map<long long int, Animal>& animals);
 
 	 std::vector<Segment> getSegments();
 	 Circle getCircle();
